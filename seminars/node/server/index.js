@@ -10,4 +10,18 @@ app.get("/", function(request, response) {
     response.send("Hello, " + name + "! I am " + mood + " too");
 });
 
+mongoClient.connect("mongodb://localhost", function(err, client){
+    console.log(err);
+    let sandbox = client.db("sandbox");
+    let humans = sandbox.collection("humans");
+
+    humans.insert({
+        name: "Алексей",
+        age: 18
+    }, function(err, result) {
+        console.log(result);
+        client.close();
+    });
+});
+
 app.listen(591);
