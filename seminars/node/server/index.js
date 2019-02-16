@@ -1,8 +1,11 @@
 let express = require("express");
 let cors = require("cors");
 let app = express();
+let mongoClient = require("mongodb").MongoClient;
+let app = express();
 
 app.use(cors());
+app.use(express.static(".../client"));
 
 app.get("/", function(request, response) {
     let name = request.query.name;
